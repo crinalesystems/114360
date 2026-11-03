@@ -7,12 +7,19 @@ private servers.
 
 | File | For |
 |---|---|
-| `114360-installer-rev0-windows.zip` | Windows |
-| `114360-installer-rev0-linux.zip` | Linux |
+| `114360-installer-rev1-windows.zip` | Windows |
+| `114360-installer-rev1-linux.zip` | Linux |
 
 Each zip holds the installer (`114360-installer`), its libraries, the launcher build (`payload/default.xex`), the
 font and a guide (`README.txt`). No game data is included; the installer fetches PlayOnline and FFXI data itself.
 `SHA256SUMS` lists the checksums.
+
+## rev1
+
+- The 2016 data folder no longer needs CONFIG.SYS: when it has none, the installer writes the FFXI disc's own.
+- An interrupted install continues when the installer is run again with the same choices.
+
+Earlier packages are on the Releases page.
 
 ## Launcher build of 2026-11-02
 
