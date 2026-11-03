@@ -7,14 +7,14 @@ private servers.
 
 | File | For |
 |---|---|
-| `114360-installer-rev5-windows.zip` | Windows |
-| `114360-installer-rev5-linux.zip` | Linux |
+| `114360-installer-rev6-windows.zip` | Windows |
+| `114360-installer-rev6-linux.zip` | Linux |
 
 Each zip holds the installer (`114360-installer`), its libraries, the launcher build (`payload/default.xex`), the
 font and a guide (`README.txt`). No game data is included; the installer fetches PlayOnline and FFXI data itself.
 `SHA256SUMS` lists the checksums.
 
-## rev5
+## rev6
 
 - Advanced option "For Xbox 360 Neighborhood" (-neighborhood): leaves out the three empty files and gives the
   four PlayOnline menu tracks with names over 42 characters shorter names, so the install copies to an Xbox 360
