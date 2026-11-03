@@ -7,17 +7,18 @@ private servers.
 
 | File | For |
 |---|---|
-| `114360-installer-rev2-windows.zip` | Windows |
-| `114360-installer-rev2-linux.zip` | Linux |
+| `114360-installer-rev3-windows.zip` | Windows |
+| `114360-installer-rev3-linux.zip` | Linux |
 
 Each zip holds the installer (`114360-installer`), its libraries, the launcher build (`payload/default.xex`), the
 font and a guide (`README.txt`). No game data is included; the installer fetches PlayOnline and FFXI data itself.
 `SHA256SUMS` lists the checksums.
 
-## rev2
+## rev3
 
-- Empty files, the game's own error logs and four PlayOnline menu tracks with names over 42 characters are
-  left out, so an install copies to an Xbox 360 hard disk (e.g. with Xbox 360 Neighborhood) without refusals.
+- Advanced option "For Xbox 360 Neighborhood" (-neighborhood): leaves out the three empty files and gives the
+  four PlayOnline menu tracks with names over 42 characters shorter names, so the install copies to an Xbox 360
+  hard disk without refusals. Off: every file is copied as it is. The game's own error logs are never copied.
 
 - The 2016 data folder no longer needs CONFIG.SYS: when it has none, the installer writes the FFXI disc's own.
 - An interrupted install continues when the installer is run again with the same choices.
