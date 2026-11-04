@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- XEX settings for link.exe /XEXCONFIG (format learned from imagexex errors: values are attributes).
+     Mirrors GameExecContent0001.xex 20110726_A: FFXI title id, 32 MB title workspace, and privilege 6 =
+     XEX_PRIVILEGE_INSECURE_SOCKETS (plain IP networking). Verify with imagexex /DUMP /HEADERS. -->
+<xex>
+  <titleid id="0x535107D5"/>
+  <workspace size="0x2000000"/>
+  <privilege id="6"/>
+</xex>

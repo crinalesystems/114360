@@ -1,0 +1,35 @@
+# Copyrighted game data and console dumps never enter git.
+/dumps/
+/captures/
+*.iso
+*.xex
+*.xexp
+*.dat
+*.bin
+*.img
+
+# LandSandBoat fork is its own git repository.
+/server/
+
+# Notes and docs stay local.
+/docs/
+
+# Local analysis output
+/work/
+*.gpr
+*.rep/
+.venv/
+*.zip
+*.7z
+
+# Built XEX modules (link Microsoft SDK libraries)
+/launcher/build/
+
+# Editor setup with this machine's paths (XDK location)
+.clangd
+
+# Python bytecode
+__pycache__/
+
+# Packaged installers
+/dist/
