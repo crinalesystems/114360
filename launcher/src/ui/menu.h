@@ -17,7 +17,7 @@ typedef struct {
     char name[32];
     char address[MENU_TEXT];    /* IPv4 address or host name */
     char revision[MENU_TEXT];   /* folder under game:\rev */
-    char version[MENU_TEXT];    /* client version the lobby login reports; "" = the revision's, PS2 form */
+    char version[MENU_TEXT];    /* client version the lobby login reports, exactly; "" = the revision's (platform digit from `platform`) */
     char credential[MENU_TEXT]; /* PlayOnline sign-in file under game:\ (tools/pol-signin); "" = none */
     char pol_id[16];            /* PlayOnline ID to sign in with on the console; "" = no sign-in (bridge) */
     char pol_password[32];

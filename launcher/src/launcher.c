@@ -1319,8 +1319,9 @@ static int recv_fixed(DWORD caller, DWORD s, char *buf, int len, int flags)
    3 PC, 4 360) and the rest the data's release. Servers decide on it: LandSandBoat compares the first six
    characters (VER_LOCK), Project Crystal's lobby hands it to the world. The launcher reports
    report_version instead (apply_config): the preset's `version`, else the revision's rev:\version.txt
-   (the data's own release, written by the revision tools), else patch.ver; a version starting with 3 or 4
-   is reported in its PS2 form (first digit 2), the platform those servers expect. The client-to-server
+   (the data's own release, written by the revision tools), else patch.ver. Its platform digit is changed only
+   when the preset names a platform (`platform = PS2`: 2, `WIN`: 3); otherwise the 360 reports itself (4xxx), and
+   a preset's own `version` is sent exactly as written. The client-to-server
    hash field is the session hash, not a digest of the packet, so the rewrite needs nothing else. xam
    ordinal 22. */
 #define LOBBY_LOGIN_SIZE 0x98
@@ -3831,8 +3832,9 @@ static void check_preset(const MENU_PRESET *preset, MENU_CHECK *out)
 }
 
 /* The version the lobby login reports (send_fixed): the preset's `version`, else rev\<revision>\version.txt,
-   else the data's version (MENU_CHECK.data_version); 3xxx (PC) and 4xxx (360) are
-   reported as 2xxx (PS2), or as 3xxx when the preset names the PC platform. */
+   else the data's version (MENU_CHECK.data_version). A preset's own `version` goes out exactly as written. Otherwise
+   the version keeps its platform digit (the 360 reports itself: 4xxxxxxx_x) unless the preset names a platform:
+   `platform = PS2` reports 2xxx, `platform = WIN` 3xxx. */
 static void choose_report_version(const MENU_PRESET *preset, const char *patch_ver)
 {
     char path[MENU_TEXT + 32], v[MENU_TEXT];
@@ -3846,8 +3848,12 @@ static void choose_report_version(const MENU_PRESET *preset, const char *patch_v
         strcpy(v, patch_ver);
         v[strcspn(v, " ")] = '\0';
     }
-    if (v[0] == '2' || v[0] == '3' || v[0] == '4') {
-        v[0] = _stricmp(preset->platform, "WIN") == 0 ? '3' : '2';
+    if (preset->version[0] == '\0' && (v[0] == '2' || v[0] == '3' || v[0] == '4')) {
+        if (_stricmp(preset->platform, "PS2") == 0) {
+            v[0] = '2';
+        } else if (_stricmp(preset->platform, "WIN") == 0) {
+            v[0] = '3';
+        }
     }
     copy_trimmed(report_version, LOBBY_VERSION_SIZE, v);
     DbgPrint("114360: lobby login reports version [%s]\n", report_version);
